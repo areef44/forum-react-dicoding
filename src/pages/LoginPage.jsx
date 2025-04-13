@@ -1,6 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Layout, Typography, Form, Input, Button, Flex, Card } from 'antd';
+import { Layout, Typography  } from 'antd';
 import { Header } from 'antd/es/layout/layout';
 import LoginInput from '../components/LoginInput';
 
@@ -16,19 +15,21 @@ function LoginPage() {
 
   return (
     <Layout style={{ minHeight: '100vh' }}>
-      
-      <Header style={{ backgroundColor: '#1677ff', height: '80px'}}>
-         <Title align="left"
-          justify="center" style={{color: 'white', paddingTop: '16px', paddingBottom:'16px'}}>
-            Forum Dicoding
-         </Title>
+      <Header style={{ backgroundColor: '#1677ff', height: '80px' }}>
+        <Title
+          align="left"
+          justify="center"
+          style={{ color: 'white', paddingTop: '16px', paddingBottom: '16px' }}
+        >
+          Forum Dicoding
+        </Title>
       </Header>
 
-     <LoginInput login={onLogin} />
+      <LoginInput login={onLogin} />
 
-      <Footer style={{ textAlign: 'center', backgroundColor: '#1677ff'}}>
-        <Title level={5} style={{color:'white'}}>
-            Muhammad Arif @2025
+      <Footer style={{ textAlign: 'center', backgroundColor: '#1677ff' }}>
+        <Title level={5} style={{ color: 'white' }}>
+          Muhammad Arif @2025
         </Title>
       </Footer>
     </Layout>

@@ -1,15 +1,15 @@
-import React from "react";
-import PropTypes from "prop-types";
-import useInput from "../hooks/useInput";
-import { Link } from "react-router-dom";
-import { Layout, Typography, Form, Input, Button, Flex, Card } from "antd";
+import React from 'react';
+import PropTypes from 'prop-types';
+import useInput from '../hooks/useInput';
+import { Link } from 'react-router-dom';
+import { Layout, Typography, Form, Input, Button, Flex, Card } from 'antd';
 
 const { Content } = Layout;
 const { Title, Text } = Typography;
 
 function LoginInput({ login }) {
-  const [id, onIdChange] = useInput("");
-  const [password, onPasswordChange] = useInput("");
+  const [id, onIdChange] = useInput('');
+  const [password, onPasswordChange] = useInput('');
 
   return (
     <Content>
@@ -17,14 +17,14 @@ function LoginInput({ login }) {
         vertical
         align="center"
         justify="center"
-        style={{ minHeight: "80vh", padding: "24px" }}
+        style={{ minHeight: '80vh', padding: '24px' }}
       >
         <Card style={{ width: 400 }}>
-          <Title level={2} style={{ textAlign: "left" }}>
+          <Title level={2} style={{ textAlign: 'left' }}>
             Login
           </Title>
 
-          <Title level={5} style={{ textAlign: "left" }}>
+          <Title level={5} style={{ textAlign: 'left' }}>
             Login To Access Your Forum
           </Title>
 
