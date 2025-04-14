@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import LoginPage from './pages/LoginPage';
-
+import RegisterPage from './pages/RegisterPage';
 
 function App() {
   const {
@@ -31,6 +31,7 @@ function App() {
         <main>
           <Routes>
             <Route path="/*" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
           </Routes>
         </main>
       </>
@@ -39,7 +40,7 @@ function App() {
 
   return (
     <>
-      {/* <Loading />
+      <Loading />
       <div className="app-container">
         <header>
           <Navigation authUser={authUser} signOut={onSignOut} />
@@ -50,7 +51,7 @@ function App() {
             <Route path="/talks/:id" element={<DetailPage />} />
           </Routes>
         </main>
-      </div> */}
+      </div>
     </>
   );
 }

@@ -1,17 +1,20 @@
 import React from "react";
+import { Link, useNavigate } from "react-router-dom";
+import RegisterInput from "../components/RegisterInput";
 import { Layout, Typography, Flex, Card } from "antd";
 import { Header } from "antd/es/layout/layout";
-import LoginInput from "../components/LoginInput";
-import { Link } from "react-router-dom";
 
 const { Footer, Content } = Layout;
 const { Title, Text } = Typography;
 
-function LoginPage() {
+function RegisterPage() {
+  const navigate = useNavigate();
   const dispatch = null; // @TODO: get dispatch function from store
 
-  const onLogin = ({ id, password }) => {
-    // @TODO: dispatch async action to login
+  const onRegister = ({ name, id, password }) => {
+    // @TODO: dispatch async action to register
+
+    navigate("/");
   };
 
   return (
@@ -34,17 +37,17 @@ function LoginPage() {
         >
           <Card style={{ width: 600 }}>
             <Title level={2} style={{ textAlign: "left" }}>
-              Login
+              Create Account
             </Title>
 
             <Title level={5} style={{ textAlign: "left" }}>
-              Login To Access Your Forum
+              Join With Our Forum
             </Title>
 
-            <LoginInput login={onLogin} />
+            <RegisterInput register={onRegister} />
 
             <Text>
-              Don&apos;t have an account? {' '} <Link to="/register">Register</Link>
+              already have an account? <Link to="/">Login</Link>
             </Text>
           </Card>
         </Flex>
@@ -59,4 +62,4 @@ function LoginPage() {
   );
 }
 
-export default LoginPage;
+export default RegisterPage;
