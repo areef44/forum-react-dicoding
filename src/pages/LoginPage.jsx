@@ -3,15 +3,17 @@ import { Layout, Typography, Flex, Card } from "antd";
 import { Header } from "antd/es/layout/layout";
 import LoginInput from "../components/LoginInput";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { asyncSetAuthUser } from "../states/authUser/action";
 
 const { Footer, Content } = Layout;
 const { Title, Text } = Typography;
 
 function LoginPage() {
-  const dispatch = null; // @TODO: get dispatch function from store
+  const dispatch = useDispatch();
 
-  const onLogin = ({ id, password }) => {
-    // @TODO: dispatch async action to login
+  const onLogin = ({ email, password }) => {
+    dispatch(asyncSetAuthUser({email, password}))
   };
 
   return (

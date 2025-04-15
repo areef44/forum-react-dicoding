@@ -1,24 +1,29 @@
 import React, { useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route} from 'react-router-dom'
+import { useSelector,useDispatch } from 'react-redux';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
+import { asyncPreloadProcess } from './states/isPreload/action';
+import { asyncUnSetAuthUser } from './states/authUser/action';
+import HomePage from './pages/HomePage';
 
 function App() {
   const {
     authUser = null,
     isPreload = false,
-  } = {}; // @TODO: get authUser and isPreLoad state from store
+  } = useSelector(
+    (states) => states
+  );
 
-  const dispatch = null; // @TODO: get dispatch function from store
+  const dispatch = useDispatch(); 
 
   useEffect(() => {
-    // @TODO: dispatch async action to preload app
+    dispatch(asyncPreloadProcess())
 
   }, [dispatch]);
 
   const onSignOut = () => {
-    // @TODO: dispatch async action to sign out
-
+    dispatch(asyncUnSetAuthUser())
   };
 
   if (isPreload) {
@@ -40,15 +45,14 @@ function App() {
 
   return (
     <>
-      <Loading />
       <div className="app-container">
         <header>
-          <Navigation authUser={authUser} signOut={onSignOut} />
+          {/* <Navigation authUser={authUser} signOut={onSignOut} /> */}
         </header>
         <main>
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/talks/:id" element={<DetailPage />} />
+            {/* <Route path="/talks/:id" element={<DetailPage />} /> */}
           </Routes>
         </main>
       </div>

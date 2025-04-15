@@ -3,17 +3,18 @@ import { Link, useNavigate } from "react-router-dom";
 import RegisterInput from "../components/RegisterInput";
 import { Layout, Typography, Flex, Card } from "antd";
 import { Header } from "antd/es/layout/layout";
+import { useDispatch } from "react-redux";
+import { asyncRegisterUser } from "../states/users/action";
 
 const { Footer, Content } = Layout;
 const { Title, Text } = Typography;
 
 function RegisterPage() {
   const navigate = useNavigate();
-  const dispatch = null; // @TODO: get dispatch function from store
+  const dispatch = useDispatch();
 
-  const onRegister = ({ name, id, password }) => {
-    // @TODO: dispatch async action to register
-
+  const onRegister = ({ name, email, password }) => {
+    dispatch(asyncRegisterUser({name, email, password}))
     navigate("/");
   };
 
