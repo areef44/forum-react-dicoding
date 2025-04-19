@@ -9,7 +9,7 @@ import {
   LikeOutlined,
   DislikeOutlined,
   CommentOutlined,
-  FieldTimeOutlined
+  FieldTimeOutlined,
 } from "@ant-design/icons";
 
 const { Title, Paragraph, Text, Link } = Typography;
@@ -30,8 +30,6 @@ function ThreadItem({
   limit = 90,
 }) {
   const navigate = useNavigate();
-  //   const isThreadUpVoted = upVotesBy.includes(authUser);
-  //   const isThreadDownVoted = downVotesBy.includes(authUser);
 
   const isThreadUpVoted = (upVotesBy ?? []).includes(authUser);
   const isThreadDownVoted = (downVotesBy ?? []).includes(authUser);
@@ -46,12 +44,20 @@ function ThreadItem({
 
   const onUpVoteClick = (event) => {
     event.stopPropagation();
-    upVoteBy(id);
+    if(isThreadUpVoted){
+      upVoteBy(id, true);
+    } else {
+      upVoteBy(id)
+    }
   };
 
   const onDownVoteClick = (event) => {
     event.stopPropagation();
-    downVoteBy(id);
+    if(isThreadDownVoted){
+      downVoteBy(id, true)
+    }else{
+      downVoteBy(id);
+    }
   };
 
   const onThreadClick = () => {
@@ -73,7 +79,6 @@ function ThreadItem({
           borderBottom: "1px solid #f0f0f0",
         }}
       >
-        
         <div
           role="button"
           tabIndex={0}
@@ -81,24 +86,33 @@ function ThreadItem({
           onKeyDown={onThreadPress}
           style={{ cursor: "pointer" }}
         >
-          <Flex style={{ marginBottom: '8px' }}>
+          <Flex style={{ marginBottom: "8px" }}>
             <div style={{ display: "flex", alignItems: "center" }}>
-              <Avatar src={user.avatar} size={64}/>
+              <Avatar src={user.avatar} size={64} />
               <div style={{ marginLeft: "12px" }}>
-                <Text strong style={{ fontSize:"20px"}}>{user.name}</Text> <br />
+                <Text strong style={{ fontSize: "20px" }}>
+                  {user.name}
+                </Text>{" "}
+                <br />
                 <Text type="secondary">@{user.email}</Text> <br />
-                <Text type="secondary"><FieldTimeOutlined />  {postedAt(createdAt)} </Text>
+                <Text type="secondary">
+                  <FieldTimeOutlined /> {postedAt(createdAt)}{" "}
+                </Text>
               </div>
             </div>
           </Flex>
-          
-          <Title level={4} style={{ marginTop: '16px', marginLeft: '8px'}}>{title}</Title>
+
+          <Title level={4} style={{ marginTop: "16px", marginLeft: "8px" }}>
+            {title}
+          </Title>
         </div>
       </div>
-      <Paragraph style={{ marginTop: '16px', marginLeft: '8px'}}>
+      <Paragraph style={{ marginTop: "16px", marginLeft: "8px" }}>
         <Flex>
-          <span dangerouslySetInnerHTML={{ __html: displayedHTML }} style={{ fontSize: 
-          '16px'}}/>
+          <span
+            dangerouslySetInnerHTML={{ __html: displayedHTML }}
+            style={{ fontSize: "16px" }}
+          />
           {cleanHTML.length > limit && (
             <Button
               type="link"
@@ -117,12 +131,35 @@ function ThreadItem({
           )}
         </Flex>
       </Paragraph>
-      <Flex gap="small" align="center" style={{ marginTop: '32px', marginLeft: '8px'}}>
-        <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
-          <LikeOutlined style={{ fontSize: "20px" }} /> <span></span>
+      <Flex
+        gap="small"
+        align="center"
+        style={{ marginTop: "32px", marginLeft: "8px" }}
+      >
+        <div
+          style={{ display: "flex", alignItems: "center", gap: "8px", }}
+          onClick={onUpVoteClick}
+        >
+          <LikeOutlined
+            style={{
+              fontSize: "20px",
+              color: isThreadUpVoted ? "#1890ff" : undefined,
+            }}
+          />
+          <span>{upVotesBy.length}</span>
         </div>
-        <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
-          <DislikeOutlined style={{ fontSize: "20px" }} /> <span></span>
+        <div
+          style={{ display: "flex", alignItems: "center", gap: "8px",marginLeft: '16px',
+          marginRight: '16px', }}
+          onClick={onDownVoteClick}
+        >
+          <DislikeOutlined
+            style={{
+              fontSize: "20px",
+              color: isThreadDownVoted ? "#ff4d4f" : undefined,
+            }}
+          />
+          <span>{downVotesBy.length}</span>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
           <CommentOutlined style={{ fontSize: "20px" }} />{" "}
@@ -130,12 +167,12 @@ function ThreadItem({
         </div>
       </Flex>
       <Button
-          color="default"
-          variant="outlined"
-          style={{ marginBottom: "16px", marginTop: '32px', marginLeft: '8px' }}
-        >
-          #{category}
-        </Button>
+        color="default"
+        variant="outlined"
+        style={{ marginBottom: "16px", marginTop: "32px", marginLeft: "8px" }}
+      >
+        #{category}
+      </Button>
     </Card>
   );
 }

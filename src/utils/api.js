@@ -116,6 +116,66 @@ const api = (() => {
   
       return threads;
     }
+
+    async function upVoteThread(id) {
+      const response = await _fetchWithAuth(`${BASE_URL}/threads/${id}/up-vote`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          threadId: id,
+        }),
+      });
+  
+      const responseJson = await response.json();
+  
+      const { status, message } = responseJson;
+  
+      if (status !== 'success') {
+        throw new Error(message);
+      }
+    }
+
+    async function downVoteThread(id) {
+      const response = await _fetchWithAuth(`${BASE_URL}/threads/${id}/down-vote`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          threadId: id,
+        }),
+      });
+  
+      const responseJson = await response.json();
+  
+      const { status, message } = responseJson;
+  
+      if (status !== 'success') {
+        throw new Error(message);
+      }
+    }
+
+    async function neutralVoteThread(id) {
+      const response = await _fetchWithAuth(`${BASE_URL}/threads/${id}/neutral-vote`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          threadId: id,
+        }),
+      });
+  
+      const responseJson = await response.json();
+  
+      const { status, message } = responseJson;
+  
+      if (status !== 'success') {
+        throw new Error(message);
+      }
+    }
   
     return {
       putAccessToken,
@@ -124,7 +184,10 @@ const api = (() => {
       login,
       getOwnProfile,
       getAllUsers,
-      getAllThreads
+      getAllThreads,
+      upVoteThread,
+      downVoteThread,
+      neutralVoteThread
     };
   })();
   
