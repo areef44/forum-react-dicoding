@@ -238,6 +238,31 @@ const api = (() => {
     return detailThread;
   }
 
+  async function addComment(threadId, content) {
+    try {
+      
+      const response = await _fetchWithAuth(`${BASE_URL}/threads/${threadId}/comments`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ content }),
+      });
+  
+      const responseJson = await response.json();
+      const { status, message, data } = responseJson;
+  
+      if (status !== "success") {
+        throw new Error(message);
+      }
+  
+      return data.comment;
+    } catch (error) {
+      console.error("Gagal menambahkan komentar:", error);
+      throw error;
+    }
+  }
+
   return {
     putAccessToken,
     getAccessToken,
@@ -250,7 +275,8 @@ const api = (() => {
     downVoteThread,
     neutralVoteThread,
     addThread,
-    getThreadDetail
+    getThreadDetail,
+    addComment,
   };
 })();
 

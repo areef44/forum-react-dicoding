@@ -7,6 +7,7 @@ import { asyncPopulateUsersAndDetailThread } from "../states/shared/action";
 import { asyncUpVoteThread,asyncDownVoteThread,asyncNeutralVoteThread } from "../states/threads/action";
 import CommentInput from "../components/CommentInput";
 import CommentList from "../components/CommentList";
+import { asyncAddCommentDetailThread } from "../states/threadDetail/action";
 
 function DetailPage() {
   const { id } = useParams();
@@ -20,6 +21,11 @@ function DetailPage() {
   useEffect(() => {
     dispatch(asyncPopulateUsersAndDetailThread(id));
   }, [id, dispatch]);
+
+  const onAddComment = ({ threadId, content }) => {
+    dispatch(asyncAddCommentDetailThread({ threadId, content }));
+
+  };
 
   const onUpVote = (id) => {
     const isThreadUpVoted = threadDetail.upVotesBy.includes(authUser.id);
@@ -69,7 +75,7 @@ function DetailPage() {
               upVoteBy={onUpVote}
               downVoteBy={onDownVote}
             />
-            <CommentInput />
+            <CommentInput  threadId={id} addComment={onAddComment}/>
             <CommentList {...threadDetail}/>
           </Card>
         </Col>

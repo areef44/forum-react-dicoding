@@ -1,11 +1,8 @@
 import React from "react";
-import { Typography, Flex } from "antd";
-import {
-    LikeOutlined,
-    DislikeOutlined,
-  } from "@ant-design/icons";
+import { Typography, Flex, Avatar } from "antd";
+import { LikeOutlined, DislikeOutlined } from "@ant-design/icons";
 
-const { Title, Paragraph } = Typography;
+const { Title, Paragraph,Text } = Typography;
 function CommentList({ comments = [] }) {
   return (
     <div style={{ marginTop: "32px" }}>
@@ -28,30 +25,13 @@ function CommentList({ comments = [] }) {
               width: "100%",
             }}
           >
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                marginBottom: "8px",
-              }}
-            >
-              <img
-                src={comment.owner.avatar}
-                alt={comment.owner.name}
-                style={{
-                  width: "40px",
-                  height: "40px",
-                  borderRadius: "50%",
-                  marginRight: "12px",
-                }}
-              />
-              <div>
-                <strong>{comment.owner.name}</strong>
-                <br />
-                <small style={{ color: "#888" }}>{comment.owner.email}</small>
+            <Flex>
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <Avatar src={comment.owner.avatar} size={32} />
+                <Text strong style={{ fontSize: "16px", marginLeft:'8px' }} >{comment.owner.name}</Text>
               </div>
-            </div>
-            <Paragraph style={{margin: '16px'}}>{comment.content}</Paragraph>
+            </Flex>
+            <Paragraph style={{ margin: "16px" }}>{comment.content}</Paragraph>
             <Flex
               gap="small"
               align="center"
@@ -59,7 +39,6 @@ function CommentList({ comments = [] }) {
             >
               <div
                 style={{ display: "flex", alignItems: "center", gap: "8px" }}
-                
               >
                 <LikeOutlined
                   style={{
@@ -67,7 +46,6 @@ function CommentList({ comments = [] }) {
                     // color: isThreadUpVoted ? "#1890ff" : undefined,
                   }}
                 />
-                
               </div>
               <div
                 style={{
@@ -77,7 +55,6 @@ function CommentList({ comments = [] }) {
                   marginLeft: "16px",
                   marginRight: "16px",
                 }}
-                
               >
                 <DislikeOutlined
                   style={{
@@ -85,7 +62,6 @@ function CommentList({ comments = [] }) {
                     // color: isThreadDownVoted ? "#ff4d4f" : undefined,?
                   }}
                 />
-                
               </div>
             </Flex>
           </div>

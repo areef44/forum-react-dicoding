@@ -3,14 +3,13 @@ import React from "react";
 
 const { Title } = Typography;
 
-function CommentInput({ addComment }) {
+function CommentInput({ addComment, threadId }) {
   const [form] = Form.useForm();
 
   function handleSubmit(values) {
     if (values.content.trim()) {
-      addComment({
-        body: values.content,
-      });
+      // ✅ ini bagian yang penting banget
+      addComment({ threadId, content: values.content });
       form.resetFields();
     }
   }
