@@ -1,15 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { Row, Col, Card, Input, Form, Button } from "antd";
 
 function ThreadInput({ addThread }) {
-  const [title, setTitle] = useState("");
-  const [category, setCategory] = useState("");
-  const [body, setBody] = useState("");
   const [form] = Form.useForm();
 
   function handleSubmit(values) {
-    console.log(values);
     if (
       values.title.trim() &&
       values.category.trim() &&

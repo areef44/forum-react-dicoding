@@ -94,7 +94,7 @@ function ThreadItem({
                   {user.name}
                 </Text>{" "}
                 <br />
-                <Text type="secondary">@{user.email}</Text> <br />
+                <Text type="secondary">{user.email}</Text> <br />
                 <Text type="secondary">
                   <FieldTimeOutlined /> {postedAt(createdAt)}{" "}
                 </Text>

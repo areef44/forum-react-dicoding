@@ -3,6 +3,7 @@ import { Routes, Route} from 'react-router-dom'
 import { useSelector,useDispatch } from 'react-redux';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
+import DetailPage from './pages/DetailPage';
 import { asyncPreloadProcess } from './states/isPreload/action';
 import { asyncUnSetAuthUser } from './states/authUser/action';
 import HomePage from './pages/HomePage';
@@ -52,7 +53,7 @@ function App() {
         <main>
           <Routes>
             <Route path="/" element={<HomePage />} />
-            {/* <Route path="/talks/:id" element={<DetailPage />} /> */}
+            <Route path="/threads/:id" element={<DetailPage />} />
           </Routes>
         </main>
       </div>
