@@ -11,6 +11,59 @@ function threadDetailReducer(threadDetail = null, action = {}) {
         ...threadDetail,
         comments: [action.payload.comment, ...threadDetail.comments],
       };
+    case ActionType.UPVOTE_COMMENT:
+      const { commentId, userId } = action.payload;
+      return {
+        ...threadDetail,
+        comments: threadDetail.comments.map((comment) => {
+          if (comment.id === commentId) {
+            const isAlreadyUpvoted = comment.upVotesBy.includes(userId);
+            return {
+              ...comment,
+              upVotesBy: isAlreadyUpvoted
+                ? comment.upVotesBy.filter((id) => id !== userId) 
+                : [...comment.upVotesBy, userId],
+              downVotesBy: comment.downVotesBy.filter((id) => id !== userId),
+            };
+          }
+          return comment;
+        }),
+      };
+      case ActionType.DOWNVOTE_COMMENT: {
+        const { commentId, userId } = action.payload;
+        return {
+          ...threadDetail,
+          comments: threadDetail.comments.map((comment) => {
+            if (comment.id === commentId) {
+              const isAlreadyDownvoted = comment.downVotesBy.includes(userId);
+              return {
+                ...comment,
+                downVotesBy: isAlreadyDownvoted
+                  ? comment.downVotesBy.filter((id) => id !== userId)
+                  : [...comment.downVotesBy, userId],
+                upVotesBy: comment.upVotesBy.filter((id) => id !== userId),
+              };
+            }
+            return comment;
+          }),
+        };
+      };
+      case ActionType.NEUTRALVOTE_COMMENT: {
+        const { commentId, userId } = action.payload;
+        return {
+          ...threadDetail,
+          comments: threadDetail.comments.map((comment) => {
+            if (comment.id === commentId) {
+              return {
+                ...comment,
+                upVotesBy: comment.upVotesBy.filter((id) => id !== userId),
+                downVotesBy: comment.downVotesBy.filter((id) => id !== userId),
+              };
+            }
+            return comment;
+          }),
+        };
+      };
     default:
       return threadDetail;
   }

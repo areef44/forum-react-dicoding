@@ -4,10 +4,19 @@ import { useParams } from "react-router-dom";
 import ThreadDetail from "../components/ThreadDetail";
 import { useSelector, useDispatch } from "react-redux";
 import { asyncPopulateUsersAndDetailThread } from "../states/shared/action";
-import { asyncUpVoteThread,asyncDownVoteThread,asyncNeutralVoteThread } from "../states/threads/action";
+import {
+  asyncUpVoteThread,
+  asyncDownVoteThread,
+  asyncNeutralVoteThread,
+} from "../states/threads/action";
 import CommentInput from "../components/CommentInput";
 import CommentList from "../components/CommentList";
-import { asyncAddCommentDetailThread } from "../states/threadDetail/action";
+import {
+  asyncAddCommentDetailThread,
+  asyncUpVoteComment,
+  asyncDownVoteComment,
+  asyncNeutralVoteComment
+} from "../states/threadDetail/action";
 
 function DetailPage() {
   const { id } = useParams();
@@ -24,7 +33,6 @@ function DetailPage() {
 
   const onAddComment = ({ threadId, content }) => {
     dispatch(asyncAddCommentDetailThread({ threadId, content }));
-
   };
 
   const onUpVote = (id) => {
@@ -75,8 +83,29 @@ function DetailPage() {
               upVoteBy={onUpVote}
               downVoteBy={onDownVote}
             />
-            <CommentInput  threadId={id} addComment={onAddComment}/>
-            <CommentList {...threadDetail}/>
+            <CommentInput threadId={id} addComment={onAddComment} />
+            <CommentList
+              {...threadDetail}
+              authUser={authUser}
+              onUpVote={(commentId) =>
+                dispatch(
+                  asyncUpVoteComment({ threadId: threadDetail.id, commentId })
+                )
+              }
+              onDownVote={(commentId) =>
+                dispatch(
+                  asyncDownVoteComment({ threadId: threadDetail.id, commentId })
+                )
+              }
+              onNeutralVote={(commentId) =>
+                dispatch(
+                  asyncNeutralVoteComment({
+                    threadId: threadDetail.id,
+                    commentId,
+                  })
+                )
+              }
+            />
           </Card>
         </Col>
       </Row>

@@ -263,6 +263,75 @@ const api = (() => {
     }
   }
 
+  async function upVoteComment(threadId, commentId) {
+    const response = await _fetchWithAuth(
+      `${BASE_URL}/threads/${threadId}/comments/${commentId}/up-vote`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+  
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || "Something went wrong");
+    }
+  
+    const { status, message } = await response.json();
+  
+    if (status !== "success") {
+      throw new Error(message);
+    }
+  }
+
+  async function downVoteComment(threadId, commentId) {
+    const response = await _fetchWithAuth(
+      `${BASE_URL}/threads/${threadId}/comments/${commentId}/down-vote`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+  
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || "Something went wrong");
+    }
+  
+    const { status, message } = await response.json();
+  
+    if (status !== "success") {
+      throw new Error(message);
+    }
+  }
+
+  async function neutralVoteComment(threadId, commentId) {
+    const response = await _fetchWithAuth(
+      `${BASE_URL}/threads/${threadId}/comments/${commentId}/neutral-vote`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+  
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || "Something went wrong");
+    }
+  
+    const { status, message } = await response.json();
+  
+    if (status !== "success") {
+      throw new Error(message);
+    }
+  }
+
   return {
     putAccessToken,
     getAccessToken,
@@ -277,6 +346,9 @@ const api = (() => {
     addThread,
     getThreadDetail,
     addComment,
+    upVoteComment,
+    downVoteComment,
+    neutralVoteComment
   };
 })();
 
