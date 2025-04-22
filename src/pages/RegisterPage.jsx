@@ -5,6 +5,7 @@ import { Layout, Typography, Flex, Card } from "antd";
 import { Header } from "antd/es/layout/layout";
 import { useDispatch } from "react-redux";
 import { asyncRegisterUser } from "../states/users/action";
+import HeaderNavbar from "../components/Header";
 
 const { Footer, Content } = Layout;
 const { Title, Text } = Typography;
@@ -20,15 +21,7 @@ function RegisterPage() {
 
   return (
     <Layout style={{ minHeight: "100vh" }}>
-      <Header style={{ backgroundColor: "#1677ff", height: "80px" }}>
-        <Title
-          align="left"
-          justify="center"
-          style={{ color: "white", paddingTop: "16px", paddingBottom: "16px" }}
-        >
-          Forum Dicoding
-        </Title>
-      </Header>
+      <HeaderNavbar />
       <Content>
         <Flex
           vertical

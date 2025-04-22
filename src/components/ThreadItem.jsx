@@ -71,7 +71,7 @@ function ThreadItem({
   };
 
   return (
-    <Card style={{ width: "100%", marginTop: "8px", marginBottom: "8px" }}>
+    <Card theme="dark" style={{ width: "100%", marginTop: "8px", marginBottom: "8px" }}>
       <div
         style={{
           display: "",

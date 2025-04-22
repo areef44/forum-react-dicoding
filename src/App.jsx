@@ -7,6 +7,8 @@ import DetailPage from './pages/DetailPage';
 import { asyncPreloadProcess } from './states/isPreload/action';
 import { asyncUnSetAuthUser } from './states/authUser/action';
 import HomePage from './pages/HomePage';
+import Navigation from './components/Navigation';
+import LeaderboardPage from './pages/LeaderboardPage';
 
 function App() {
   const {
@@ -46,14 +48,15 @@ function App() {
 
   return (
     <>
-      <div className="app-container">
+      <div>
         <header>
-          {/* <Navigation authUser={authUser} signOut={onSignOut} /> */}
+          <Navigation authUser={authUser} signOut={onSignOut}/>
         </header>
         <main>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/threads/:id" element={<DetailPage />} />
+            <Route path="/leaderboards" element={<LeaderboardPage />}/>
           </Routes>
         </main>
       </div>

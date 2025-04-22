@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ThreadsList from "../components/ThreadsList";
 import { useEffect } from "react";
 import { asyncPopulateUsersAndThreads } from "../states/shared/action";
-import { Layout } from "antd";
+import { Layout, Typography } from "antd";
 import {
   asyncAddThread,
   asyncDownVoteThread,
@@ -10,6 +10,10 @@ import {
   asyncUpVoteThread,
 } from "../states/threads/action";
 import ThreadInput from "../components/ThreadInput";
+
+const { Footer } = Layout;
+const { Title } = Typography
+
 function HomePage() {
   const {
     threads = [],
@@ -70,7 +74,13 @@ function HomePage() {
         upVoteBy={onUpVote}
         downVoteBy={onDownVote}
       />
+      <Footer style={{ textAlign: "center", backgroundColor: "#1677ff" }}>
+        <Title level={5} style={{ color: "white" }}>
+          Muhammad Arif @2025
+        </Title>
+      </Footer>
     </Layout>
+    
   );
 }
 

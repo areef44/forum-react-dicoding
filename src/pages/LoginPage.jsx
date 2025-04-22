@@ -1,10 +1,10 @@
 import React from "react";
 import { Layout, Typography, Flex, Card } from "antd";
-import { Header } from "antd/es/layout/layout";
 import LoginInput from "../components/LoginInput";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { asyncSetAuthUser } from "../states/authUser/action";
+import HeaderNavbar from "../components/Header";
 
 const { Footer, Content } = Layout;
 const { Title, Text } = Typography;
@@ -13,20 +13,12 @@ function LoginPage() {
   const dispatch = useDispatch();
 
   const onLogin = ({ email, password }) => {
-    dispatch(asyncSetAuthUser({email, password}))
+    dispatch(asyncSetAuthUser({ email, password }));
   };
 
   return (
     <Layout style={{ minHeight: "100vh" }}>
-      <Header style={{ backgroundColor: "#1677ff", height: "80px" }}>
-        <Title
-          align="left"
-          justify="center"
-          style={{ color: "white", paddingTop: "16px", paddingBottom: "16px" }}
-        >
-          Forum Dicoding
-        </Title>
-      </Header>
+      <HeaderNavbar />
       <Content>
         <Flex
           vertical
@@ -46,7 +38,7 @@ function LoginPage() {
             <LoginInput login={onLogin} />
 
             <Text>
-              Don&apos;t have an account? {' '} <Link to="/register">Register</Link>
+              Don&apos;t have an account? <Link to="/register">Register</Link>
             </Text>
           </Card>
         </Flex>
