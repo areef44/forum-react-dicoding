@@ -59,7 +59,7 @@ function HomePage() {
   }
   
   const threadList = threads
-  .filter((thread) => thread && thread.ownerId) // pastikan thread valid
+  .filter((thread) => thread && thread.ownerId)
   .map((thread) => ({
     ...thread,
     user: users.find((user) => user.id === thread.ownerId) || null,
