@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import ThreadsList from "../components/ThreadsList";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { asyncPopulateUsersAndThreads } from "../states/shared/action";
-import { Layout, Typography } from "antd";
+import { Layout, Typography, Button } from "antd";
 import {
   asyncAddThread,
   asyncDownVoteThread,
@@ -10,9 +10,10 @@ import {
   asyncUpVoteThread,
 } from "../states/threads/action";
 import ThreadInput from "../components/ThreadInput";
+import CategoriesList from "../components/CategoriesList";
 
 const { Footer } = Layout;
-const { Title } = Typography
+const { Title } = Typography;
 
 function HomePage() {
   const {
@@ -21,6 +22,8 @@ function HomePage() {
     authUser,
   } = useSelector((states) => states);
 
+  const [selectedCategory, setSelectedCategory] = useState("all");
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -28,8 +31,13 @@ function HomePage() {
   }, [dispatch]);
 
   const onAddThread = ({ title, category, body }) => {
-    dispatch(asyncAddThread({ title, category, body }));
-    dispatch(asyncPopulateUsersAndThreads()); 
+    dispatch(asyncAddThread({ title, category, body }))
+      .then(() => {
+        dispatch(asyncPopulateUsersAndThreads());
+      })
+      .catch((error) =>
+        console.log("Error populating users and threads:", error)
+      );
   };
 
   const onUpVote = (id) => {
@@ -57,20 +65,34 @@ function HomePage() {
   if (!authUser || threads.length === 0 || users.length === 0) {
     return <div>Loading...</div>;
   }
-  
-  const threadList = threads
-  .filter((thread) => thread && thread.ownerId)
-  .map((thread) => ({
-    ...thread,
-    user: users.find((user) => user.id === thread.ownerId) || null,
-    authUser: authUser?.id ?? null,
-  }));
+
+  const categories = [
+    ...new Set(threads.filter((thread) => thread?.category).map((thread) => thread.category)),
+  ];
+
+  // Filter threads by category (defaults to "all")
+  const filteredThreads = threads
+    .filter((thread) => thread && thread.category)
+    .filter((thread) =>
+      selectedCategory === "all" ? true : thread.category === selectedCategory
+    )
+    .filter((thread) => thread && thread.ownerId)
+    .map((thread) => ({
+      ...thread,
+      user: users.find((user) => user.id === thread.ownerId) || null,
+      authUser: authUser?.id ?? null,
+    }));
 
   return (
     <Layout style={{ minHeight: "100vh" }}>
-      <ThreadInput addThread={onAddThread}/>
+      <CategoriesList
+        categories={categories}
+        selectedCategory={selectedCategory}
+        onSelect={setSelectedCategory}
+      />
+      <ThreadInput addThread={onAddThread} />
       <ThreadsList
-        threads={threadList}
+        threads={filteredThreads}
         upVoteBy={onUpVote}
         downVoteBy={onDownVote}
       />
@@ -80,7 +102,6 @@ function HomePage() {
         </Title>
       </Footer>
     </Layout>
-    
   );
 }
 
