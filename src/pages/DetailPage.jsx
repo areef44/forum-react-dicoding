@@ -1,22 +1,23 @@
-import React, { useEffect } from "react";
-import { Layout, Card, Row, Col } from "antd";
-import { useParams } from "react-router-dom";
-import ThreadDetail from "../components/ThreadDetail";
-import { useSelector, useDispatch } from "react-redux";
-import { asyncPopulateUsersAndDetailThread } from "../states/shared/action";
+import React, { useEffect } from 'react';
+import { Layout, Card, Row, Col } from 'antd';
+import { useParams } from 'react-router-dom';
+import ThreadDetail from '../components/ThreadDetail';
+import { useSelector, useDispatch } from 'react-redux';
+import { asyncPopulateUsersAndDetailThread } from '../states/shared/action';
 import {
   asyncUpVoteThread,
   asyncDownVoteThread,
   asyncNeutralVoteThread,
-} from "../states/threads/action";
-import CommentInput from "../components/CommentInput";
-import CommentList from "../components/CommentList";
+} from '../states/threads/action';
+import CommentInput from '../components/CommentInput';
+import CommentList from '../components/CommentList';
 import {
   asyncAddCommentDetailThread,
   asyncUpVoteComment,
   asyncDownVoteComment,
-  asyncNeutralVoteComment
-} from "../states/threadDetail/action";
+  asyncNeutralVoteComment,
+} from '../states/threadDetail/action';
+import Loading from '../components/Loading';
 
 function DetailPage() {
   const { id } = useParams();
@@ -56,26 +57,16 @@ function DetailPage() {
   };
 
   if (!threadDetail || !threadDetail.owner) {
-    return (
-      <Layout style={{ minHeight: "100vh" }}>
-        <Row justify="center">
-          <Col xs={24} sm={20} md={16} lg={12}>
-            <Card style={{ marginTop: "16px", textAlign: "center" }}>
-              <p>Loading detail thread...</p>
-            </Card>
-          </Col>
-        </Row>
-      </Layout>
-    );
+    return <Loading />;
   }
 
   const owner = users.find((user) => user.id === threadDetail.owner.id);
 
   return (
-    <Layout style={{ minHeight: "100vh" }}>
+    <Layout style={{ minHeight: '100vh' }}>
       <Row justify="center">
         <Col xs={24} sm={20} md={16} lg={12}>
-          <Card style={{ marginTop: "16px" }}>
+          <Card style={{ marginTop: '16px' }}>
             <ThreadDetail
               {...threadDetail}
               authUser={authUser.id}

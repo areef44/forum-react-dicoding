@@ -1,13 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
-import useInput from "../hooks/useInput";
-import { Form, Input, Button } from "antd";
+import React from 'react';
+import PropTypes from 'prop-types';
+import useInput from '../hooks/useInput';
+import { Form, Input, Button } from 'antd';
 
 
 function RegisterInput({ register }) {
-  const [name, onNameChange] = useInput("");
-  const [email, onEmailChange] = useInput("");
-  const [password, onPasswordChange] = useInput("");
+  const [name, onNameChange] = useInput('');
+  const [email, onEmailChange] = useInput('');
+  const [password, onPasswordChange] = useInput('');
 
   return (
     <Form layout="vertical" style={{ marginTop: 24 }}>

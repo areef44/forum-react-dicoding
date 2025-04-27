@@ -1,6 +1,6 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Row, Col, Card, Input, Form, Button } from "antd";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Row, Col, Card, Input, Form, Button } from 'antd';
 
 function ThreadInput({ addThread }) {
   const [form] = Form.useForm();
@@ -24,9 +24,9 @@ function ThreadInput({ addThread }) {
     <Row justify="center">
       <Col xs={24} sm={20} md={16} lg={12}>
         <Card
-          style={{ width: "100%", marginTop: "8px", marginBottom: "8px" }}
+          style={{ width: '100%', marginTop: '8px', marginBottom: '8px' }}
           title={
-            <h2 style={{ fontSize: "24px", margin: 0, fontWeight: "bold" }}>
+            <h2 style={{ fontSize: '24px', margin: 0, fontWeight: 'bold' }}>
               Create New Thread
             </h2>
           }
@@ -52,10 +52,10 @@ function ThreadInput({ addThread }) {
                 rows={4}
                 placeholder="Insert content"
                 maxLength={300}
-                style={{ minHeight: "100px" }}
+                style={{ minHeight: '100px' }}
               />
             </Form.Item>
-            <Form.Item style={{ display: "flex", justifyContent: "right" }}>
+            <Form.Item style={{ display: 'flex', justifyContent: 'right' }}>
               <Button type="primary" htmlType="submit">
                 Create New Thread
               </Button>

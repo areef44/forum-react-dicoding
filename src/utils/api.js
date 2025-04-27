@@ -1,5 +1,5 @@
 const api = (() => {
-  const BASE_URL = "https://forum-api.dicoding.dev/v1";
+  const BASE_URL = 'https://forum-api.dicoding.dev/v1';
 
   async function _fetchWithAuth(url, options = {}) {
     return fetch(url, {
@@ -12,18 +12,18 @@ const api = (() => {
   }
 
   function putAccessToken(token) {
-    localStorage.setItem("accessToken", token);
+    localStorage.setItem('accessToken', token);
   }
 
   function getAccessToken() {
-    return localStorage.getItem("accessToken");
+    return localStorage.getItem('accessToken');
   }
 
   async function register({ name, email, password }) {
     const response = await fetch(`${BASE_URL}/register`, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         name,
@@ -35,7 +35,7 @@ const api = (() => {
     const responseJson = await response.json();
     const { status, message } = responseJson;
 
-    if (status !== "success") {
+    if (status !== 'success') {
       throw new Error(message);
     }
 
@@ -48,9 +48,9 @@ const api = (() => {
 
   async function login({ email, password }) {
     const response = await fetch(`${BASE_URL}/login`, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         email,
@@ -62,7 +62,7 @@ const api = (() => {
 
     const { status, message } = responseJson;
 
-    if (status !== "success") {
+    if (status !== 'success') {
       throw new Error(message);
     }
 
@@ -80,7 +80,7 @@ const api = (() => {
 
     const { status, message } = responseJson;
 
-    if (status !== "success") {
+    if (status !== 'success') {
       throw new Error(message);
     }
 
@@ -98,7 +98,7 @@ const api = (() => {
 
     const { status, message } = responseJson;
 
-    if (status !== "success") {
+    if (status !== 'success') {
       throw new Error(message);
     }
 
@@ -116,7 +116,7 @@ const api = (() => {
 
     const { status, message } = responseJson;
 
-    if (status !== "success") {
+    if (status !== 'success') {
       throw new Error(message);
     }
 
@@ -129,9 +129,9 @@ const api = (() => {
 
   async function upVoteThread(id) {
     const response = await _fetchWithAuth(`${BASE_URL}/threads/${id}/up-vote`, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         threadId: id,
@@ -142,7 +142,7 @@ const api = (() => {
 
     const { status, message } = responseJson;
 
-    if (status !== "success") {
+    if (status !== 'success') {
       throw new Error(message);
     }
   }
@@ -151,9 +151,9 @@ const api = (() => {
     const response = await _fetchWithAuth(
       `${BASE_URL}/threads/${id}/down-vote`,
       {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           threadId: id,
@@ -165,7 +165,7 @@ const api = (() => {
 
     const { status, message } = responseJson;
 
-    if (status !== "success") {
+    if (status !== 'success') {
       throw new Error(message);
     }
   }
@@ -174,9 +174,9 @@ const api = (() => {
     const response = await _fetchWithAuth(
       `${BASE_URL}/threads/${id}/neutral-vote`,
       {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           threadId: id,
@@ -188,16 +188,16 @@ const api = (() => {
 
     const { status, message } = responseJson;
 
-    if (status !== "success") {
+    if (status !== 'success') {
       throw new Error(message);
     }
   }
 
   async function addThread({ title, category, body }) {
     const response = await _fetchWithAuth(`${BASE_URL}/threads`, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         title,
@@ -209,7 +209,7 @@ const api = (() => {
 
     const { status, message } = responseJson;
 
-    if (status !== "success") {
+    if (status !== 'success') {
       throw new Error(message);
     }
 
@@ -227,7 +227,7 @@ const api = (() => {
 
     const { status, message } = responseJson;
 
-    if (status !== "success") {
+    if (status !== 'success') {
       throw new Error(message);
     }
 
@@ -240,25 +240,25 @@ const api = (() => {
 
   async function addComment(threadId, content) {
     try {
-      
+
       const response = await _fetchWithAuth(`${BASE_URL}/threads/${threadId}/comments`, {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({ content }),
       });
-  
+
       const responseJson = await response.json();
       const { status, message, data } = responseJson;
-  
-      if (status !== "success") {
+
+      if (status !== 'success') {
         throw new Error(message);
       }
-  
+
       return data.comment;
     } catch (error) {
-      console.error("Gagal menambahkan komentar:", error);
+      console.error('Gagal menambahkan komentar:', error);
       throw error;
     }
   }
@@ -267,21 +267,21 @@ const api = (() => {
     const response = await _fetchWithAuth(
       `${BASE_URL}/threads/${threadId}/comments/${commentId}/up-vote`,
       {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
       }
     );
-  
+
     if (!response.ok) {
       const errorData = await response.json();
-      throw new Error(errorData.message || "Something went wrong");
+      throw new Error(errorData.message || 'Something went wrong');
     }
-  
+
     const { status, message } = await response.json();
-  
-    if (status !== "success") {
+
+    if (status !== 'success') {
       throw new Error(message);
     }
   }
@@ -290,21 +290,21 @@ const api = (() => {
     const response = await _fetchWithAuth(
       `${BASE_URL}/threads/${threadId}/comments/${commentId}/down-vote`,
       {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
       }
     );
-  
+
     if (!response.ok) {
       const errorData = await response.json();
-      throw new Error(errorData.message || "Something went wrong");
+      throw new Error(errorData.message || 'Something went wrong');
     }
-  
+
     const { status, message } = await response.json();
-  
-    if (status !== "success") {
+
+    if (status !== 'success') {
       throw new Error(message);
     }
   }
@@ -313,21 +313,21 @@ const api = (() => {
     const response = await _fetchWithAuth(
       `${BASE_URL}/threads/${threadId}/comments/${commentId}/neutral-vote`,
       {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
       }
     );
-  
+
     if (!response.ok) {
       const errorData = await response.json();
-      throw new Error(errorData.message || "Something went wrong");
+      throw new Error(errorData.message || 'Something went wrong');
     }
-  
+
     const { status, message } = await response.json();
-  
-    if (status !== "success") {
+
+    if (status !== 'success') {
       throw new Error(message);
     }
   }
@@ -339,7 +339,7 @@ const api = (() => {
 
     const { status, message } = responseJson;
 
-    if (status !== "success") {
+    if (status !== 'success') {
       throw new Error(message);
     }
 

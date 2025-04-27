@@ -1,11 +1,11 @@
-import api from "../../utils/api";
+import api from '../../utils/api';
 
 const ActionType = {
-  RECEIVE_THREADS: "RECEIVE_THREADS",
-  UPVOTE_THREAD: "UPVOTE_THREAD",
-  DOWNVOTE_THREAD: "DOWNVOTE_THREAD",
-  NEUTRAL_VOTE_THREAD: "NEUTRAL_VOTE_THREAD",
-  ADD_THREAD: "ADD_THREAD",
+  RECEIVE_THREADS: 'RECEIVE_THREADS',
+  UPVOTE_THREAD: 'UPVOTE_THREAD',
+  DOWNVOTE_THREAD: 'DOWNVOTE_THREAD',
+  NEUTRAL_VOTE_THREAD: 'NEUTRAL_VOTE_THREAD',
+  ADD_THREAD: 'ADD_THREAD',
 };
 
 function receiveThreadsActionCreator(threads) {
@@ -97,10 +97,10 @@ function asyncNeutralVoteThread(threadId) {
 function asyncAddThread({ title, category, body }) {
   return async (dispatch) => {
     try {
-      const thread = await api.addThread({title, category, body});
-      dispatch(addThreadActionCreator(thread))
+      const thread = await api.addThread({ title, category, body });
+      dispatch(addThreadActionCreator(thread));
     } catch (error) {
-      alert(error.message)
+      alert(error.message);
     }
   };
 }

@@ -1,11 +1,10 @@
-import React from "react";
-import { Link, useNavigate } from "react-router-dom";
-import RegisterInput from "../components/RegisterInput";
-import { Layout, Typography, Flex, Card } from "antd";
-import { Header } from "antd/es/layout/layout";
-import { useDispatch } from "react-redux";
-import { asyncRegisterUser } from "../states/users/action";
-import HeaderNavbar from "../components/Header";
+import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import RegisterInput from '../components/RegisterInput';
+import { Layout, Typography, Flex, Card } from 'antd';
+import { useDispatch } from 'react-redux';
+import { asyncRegisterUser } from '../states/users/action';
+import HeaderNavbar from '../components/Header';
 
 const { Footer, Content } = Layout;
 const { Title, Text } = Typography;
@@ -15,26 +14,26 @@ function RegisterPage() {
   const dispatch = useDispatch();
 
   const onRegister = ({ name, email, password }) => {
-    dispatch(asyncRegisterUser({name, email, password}))
-    navigate("/");
+    dispatch(asyncRegisterUser({ name, email, password }));
+    navigate('/');
   };
 
   return (
-    <Layout style={{ minHeight: "100vh" }}>
+    <Layout style={{ minHeight: '100vh' }}>
       <HeaderNavbar />
       <Content>
         <Flex
           vertical
           align="center"
           justify="center"
-          style={{ minHeight: "80vh", padding: "24px" }}
+          style={{ minHeight: '80vh', padding: '24px' }}
         >
           <Card style={{ width: 600 }}>
-            <Title level={2} style={{ textAlign: "left" }}>
+            <Title level={2} style={{ textAlign: 'left' }}>
               Create Account
             </Title>
 
-            <Title level={5} style={{ textAlign: "left" }}>
+            <Title level={5} style={{ textAlign: 'left' }}>
               Join With Our Forum
             </Title>
 
@@ -47,8 +46,8 @@ function RegisterPage() {
         </Flex>
       </Content>
 
-      <Footer style={{ textAlign: "center", backgroundColor: "#1677ff" }}>
-        <Title level={5} style={{ color: "white" }}>
+      <Footer style={{ textAlign: 'center', backgroundColor: '#1677ff' }}>
+        <Title level={5} style={{ color: 'white' }}>
           Muhammad Arif @2025
         </Title>
       </Footer>

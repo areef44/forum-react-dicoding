@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import { Routes, Route} from 'react-router-dom'
-import { useSelector,useDispatch } from 'react-redux';
+import { Routes, Route } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import DetailPage from './pages/DetailPage';
@@ -18,15 +18,15 @@ function App() {
     (states) => states
   );
 
-  const dispatch = useDispatch(); 
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(asyncPreloadProcess())
+    dispatch(asyncPreloadProcess());
 
   }, [dispatch]);
 
   const onSignOut = () => {
-    dispatch(asyncUnSetAuthUser())
+    dispatch(asyncUnSetAuthUser());
   };
 
   if (isPreload) {

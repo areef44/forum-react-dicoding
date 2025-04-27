@@ -1,5 +1,6 @@
-import { Input, Form, Button, Typography } from "antd";
-import React from "react";
+import { Input, Form, Button, Typography } from 'antd';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const { Title } = Typography;
 
@@ -18,10 +19,10 @@ function CommentInput({ addComment, threadId }) {
     <Form
       layout="vertical"
       form={form}
-      style={{ marginTop: "32px" }}
+      style={{ marginTop: '32px' }}
       onFinish={handleSubmit}
     >
-      <Title level={4} style={{ marginTop: "16px" }}>
+      <Title level={4} style={{ marginTop: '16px' }}>
         Tambah Komentar
       </Title>
       <Form.Item name="content" rules={[{ required: true }]}>
@@ -29,10 +30,10 @@ function CommentInput({ addComment, threadId }) {
           rows={4}
           placeholder="Add Comment Here"
           maxLength={300}
-          style={{ minHeight: "100px" }}
+          style={{ minHeight: '100px' }}
         />
       </Form.Item>
-      <Form.Item style={{ display: "flex", justifyContent: "right" }}>
+      <Form.Item style={{ display: 'flex', justifyContent: 'right' }}>
         <Button type="primary" htmlType="submit">
           Add Comment
         </Button>
@@ -40,5 +41,10 @@ function CommentInput({ addComment, threadId }) {
     </Form>
   );
 }
+
+CommentInput.propTypes = {
+  addComment: PropTypes.func.isRequired,
+  threadId: PropTypes.string.isRequired,
+};
 
 export default CommentInput;
