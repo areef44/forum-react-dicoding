@@ -50,7 +50,7 @@ function ThreadInput({ addThread }) {
             <Form.Item label="Content" name="content" rules={[{ required: true }]}>
               <Input.TextArea
                 rows={4}
-                placeholder="Insert content"
+                placeholder="Insert Content"
                 maxLength={300}
                 style={{ minHeight: '100px' }}
               />
