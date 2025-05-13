@@ -27,17 +27,17 @@ describe("leaderboards function", () => {
         // arrange
         const initialState = [];
         const action = { 
-            type: "UNKNOWN",
+            type: "RECEIVE_LEADERBOARDS",
             payload: {
                 leaderboards: [
                     {
                         "user": {
-                          "id": "users-1",
-                          "name": "Muhammad Arif",
-                          "email": "example@example.com",
-                          "avatar": "https://generated-image-url.jpg"
+                            "id": "users-1",
+                            "name": "Muhammad Arif",
+                            "email": "example@example.com",
+                            "avatar": "https://generated-image-url.jpg"
                         },
-                        "score": 10
+                        "score": 10,
                     },
                 ]
             }
@@ -47,6 +47,6 @@ describe("leaderboards function", () => {
         const nextState = leaderboardsReducer(initialState, action)
 
         // assert
-        expect(nextState).toEqual(initialState)
+        expect(nextState).toEqual(action.payload.leaderboards)
     })
 })
