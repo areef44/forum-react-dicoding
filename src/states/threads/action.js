@@ -114,5 +114,6 @@ export {
   asyncUpVoteThread,
   asyncDownVoteThread,
   asyncNeutralVoteThread,
-  asyncAddThread
+  asyncAddThread,
+  addThreadActionCreator
 };
