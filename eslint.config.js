@@ -2,6 +2,7 @@ import { defineConfig } from 'eslint/config';
 import js from '@eslint/js';
 import globals from 'globals';
 import pluginReact from 'eslint-plugin-react';
+import pluginCypress from 'eslint-plugin-cypress'
 import daStyle from 'eslint-config-dicodingacademy';
 
 export default defineConfig([
@@ -18,5 +19,6 @@ export default defineConfig([
     languageOptions: { globals: globals.browser },
   },
   pluginReact.configs.flat.recommended,
+  pluginCypress.configs.recommended,
   daStyle,
 ]);
