@@ -7,14 +7,14 @@
  *
  */
 
-import { describe, expect, it } from "vitest";
-import leaderboardsReducer from "./reducer";
+import { describe, expect, it } from 'vitest';
+import leaderboardsReducer from './reducer';
 
-describe("leaderboards function", () => {
-  it("should return the initial state when given by unknown action", () => {
+describe('leaderboards function', () => {
+  it('should return the initial state when given by unknown action', () => {
     // arrange
     const initialState = [];
-    const action = { type: "UNKNOWN" };
+    const action = { type: 'UNKNOWN' };
 
     // action
     const nextState = leaderboardsReducer(initialState, action);
@@ -23,19 +23,19 @@ describe("leaderboards function", () => {
     expect(nextState).toEqual(initialState);
   });
 
-  it("should return the leaderboards when given by RECEIVE_LEADERBOARDS action", () => {
+  it('should return the leaderboards when given by RECEIVE_LEADERBOARDS action', () => {
     // arrange
     const initialState = [];
     const action = {
-      type: "RECEIVE_LEADERBOARDS",
+      type: 'RECEIVE_LEADERBOARDS',
       payload: {
         leaderboards: [
           {
             user: {
-              id: "users-1",
-              name: "Muhammad Arif",
-              email: "example@example.com",
-              avatar: "https://generated-image-url.jpg",
+              id: 'users-1',
+              name: 'Muhammad Arif',
+              email: 'example@example.com',
+              avatar: 'https://generated-image-url.jpg',
             },
             score: 10,
           },

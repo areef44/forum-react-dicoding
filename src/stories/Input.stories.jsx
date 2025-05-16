@@ -2,14 +2,14 @@ import React from 'react';
 import { Input } from 'antd';
 
 const stories = {
-    title: 'AntD/Input',
-    component: Input,
-    args: {
-      placeholder: 'Masukkan teks...',
-    },
-}
+  title: 'AntD/Input',
+  component: Input,
+  args: {
+    placeholder: 'Masukkan teks...',
+  },
+};
 
-export default stories
+export default stories;
 
 const TemplateStory = (args) => <Input {...args} />;
 

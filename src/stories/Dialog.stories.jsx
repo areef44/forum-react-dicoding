@@ -4,13 +4,13 @@ import { Modal, Button } from 'antd';
 
 const stories = {
   title: 'Antd/Dialog',
-  component: Modal,       
+  component: Modal,
   tags: ['autodocs']
 };
 export default stories;
 
 const Template = (args) => {
-  const [open, setOpen] = useState(false);      
+  const [open, setOpen] = useState(false);
 
   const showModal   = () => setOpen(true);
   const handleOk    = () => setOpen(false);
@@ -27,8 +27,8 @@ const Template = (args) => {
       </Button>
 
       <Modal
-        {...args}               
-        open={open}             
+        {...args}
+        open={open}
         onOk={handleOk}
         onCancel={handleClose}
       >
