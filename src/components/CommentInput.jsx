@@ -9,7 +9,6 @@ function CommentInput({ addComment, threadId }) {
 
   function handleSubmit(values) {
     if (values.content.trim()) {
-      // ✅ ini bagian yang penting banget
       addComment({ threadId, content: values.content });
       form.resetFields();
     }

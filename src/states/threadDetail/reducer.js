@@ -48,7 +48,7 @@ function threadDetailReducer(threadDetail = null, action = {}) {
         return comment;
       }),
     };
-  };
+  }
   case ActionType.NEUTRALVOTE_COMMENT: {
     const { commentId, userId } = action.payload;
     return {
@@ -64,7 +64,7 @@ function threadDetailReducer(threadDetail = null, action = {}) {
         return comment;
       }),
     };
-  };
+  }
   default:
     return threadDetail;
   }
