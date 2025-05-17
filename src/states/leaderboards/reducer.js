@@ -10,4 +10,4 @@ function leaderboardsReducer(leaderboards = [], action = {}) {
   }
 }
 
-export default leaderboardsReducer;
+export default leaderboardsReduce;
